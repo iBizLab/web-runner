@@ -1,0 +1,7 @@
+FROM image.ibizlab.cn/library/nginx-dynamic:v5.4
+
+WORKDIR /
+COPY dist /dist
+COPY environment.config /
+ADD nginx.conf /etc/nginx/conf.d/nginx.conf
+RUN sed -i "s#20086#30086#g" /etc/nginx/conf.d/nginx.conf

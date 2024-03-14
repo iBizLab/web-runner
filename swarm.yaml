@@ -1,0 +1,26 @@
+version: "3.2"
+services:
+  ibizservicerunner-app-cloudwebapp:
+    image: dstimage
+    ports:
+      - "80:80"
+    networks:
+      - agent_network
+    environment:
+      - APP_ID=ibizservicerunner__cloudwebapp
+      - APPCODE=cloudwebapp
+    deploy:
+      resources:
+           limits:
+               memory: 800M
+           reservations:
+               memory: 400M
+      mode: replicated
+      replicas: 1
+    extra_hosts:
+      - "gateway.ibizcloud.cn:172.16.240.140"
+
+networks:
+  agent_network:
+    driver: overlay
+    attachable: true
